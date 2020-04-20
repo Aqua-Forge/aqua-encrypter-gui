@@ -19,7 +19,7 @@ bgColor = "white"
 buttonWidth = 16
 buttonColor = "palegreen"
 buttonTextColor = "black"
-footer = "Thelmo Pontes de Araujo"
+footer = "Gabriel Furtado Lins Melo"
 
 def menu_1(window):
 	# Main menu frame:
