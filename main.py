@@ -1,8 +1,8 @@
 from menu import *
 
 def main():
-	runApplication()
+    runApplication()
 
 if __name__ == '__main__':
-	main()
+    main()
 

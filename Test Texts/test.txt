@@ -3,15 +3,15 @@ S.O. - Principais definições e tópicos.
 1. Sistema Operacional: Software que fornece aos programas do usuário um modelo simplificado do computador, bem como
    gerencia os recursos do computador. Ex.: Linux, Windows, FreeBSD, MacOS, etc.
    De maneira geral, os SOs realizam duas funções essenciais:
-	1.1 Fornecer aos programas (e programadores) um conjunto de recursos abstratos.
-	1.2 Gerenciar os recursos de HW (memória, CPU, E/S, etc.).
+    1.1 Fornecer aos programas (e programadores) um conjunto de recursos abstratos.
+    1.2 Gerenciar os recursos de HW (memória, CPU, E/S, etc.).
    *O programa com o qual os usuários interagem, normalmente chamado de shell (ou interpretador de comandos) quando é 
    baseado em texto, e de GUI (Graphical User Interface) quando ele usa ícones, na realidade não é parte do sistema
    operacional, embora use esse sistema para realizar o seu trabalho.
 
 2. Modos de Operação: A maioria dos computadores possui dois modos de operação:
-	2.1 Núcleo (Kernel): tem acesso completo a todo o HW e pode executar qualquer instrução existente (O S.O. opera neste modo).
-	2.2 Usuário (User): tem acesso somente a um subconjunto de instruções (excluindo as de controle e de E/S).
+    2.1 Núcleo (Kernel): tem acesso completo a todo o HW e pode executar qualquer instrução existente (O S.O. opera neste modo).
+    2.2 Usuário (User): tem acesso somente a um subconjunto de instruções (excluindo as de controle e de E/S).
 
 3. Processos: É, de forma geral, um programa em execução. Cada processo é associado a um espaço de endereçamento (onde
    o processo pode ler e escrever). Está associado a um conjunto de recursos: (Registradores [contador e ponteiro de pilha],
@@ -22,9 +22,9 @@ S.O. - Principais definições e tópicos.
    (via chamadas de sistema). Hierarquia de processos em formato de árvore. Em muitos casos os processos precisam comunicar-se entre
    si e sincronizar suas atividades.
    -> Processos UNIX têm sua memória dividida em três segmentos:
-	- Texto (código);
-	- Dados (variáveis) - Cresce para baixo;
-	- Pilha - Cresce para cima.
+    - Texto (código);
+    - Dados (variáveis) - Cresce para baixo;
+    - Pilha - Cresce para cima.
 
 4. Espaços de endereçamento: SOs modernos permitem que diversos programas estejam na memória simultaneamente. A fim de evitar
    que estes programas interfiram entre si, é necessário algum mecanismo de proteção. O mecanismo de proteção fica no HW, mas
@@ -38,15 +38,15 @@ S.O. - Principais definições e tópicos.
 6. Arquivos: O sistema operacional possui os drivers, softwares que lidam com o hardware. Existe mais um nível de abstração
    para utilizar os discos (memória), a qual refere-se aos arquivos. Arquivos permitem que programas aplicativos lidem com
    dados sem ter que lidar com os detalhes complexos do hardware (memória).
-	6.1. Diretório: Agrupamento de arquivos (Nome de caminho, Diretório raiz, Diretório de trabalho). Arquivos e diretórios
-	     têm permissões, as quais estão incluídas no Descritor de arquivos.
-	6.2. Arquivos especiais: Permitem que dispositivos de E/S sejam tratados como arquivos. Isto é, podem ser lidos
-	     e escritos com as mesmas chamadas de arquivos comuns:
-		6.2.1 De bloco: Modelam dispositivos que consistem de uma coleção de blocos aleatoriamente endereçáveis,
-		      podem assim acessar diretamente blocos existentes independentemente da estrutura do sistema. Ex: discos.
-		6.2.2 De caracteres: Modelam dispositivos que enviam fluxos de caracteres. Ex.: Impressora, modem, etc.
-	6.3. Pipe: É um pseudo arquivo que pode conectar dois processos. Precisa ser configurado previamente. (A) Escreve os
-	     os dados no pipe como se fosse um arquivo de saída, e (B) lê os dados do pipe como se fosse um arquivo de entrada.
+    6.1. Diretório: Agrupamento de arquivos (Nome de caminho, Diretório raiz, Diretório de trabalho). Arquivos e diretórios
+         têm permissões, as quais estão incluídas no Descritor de arquivos.
+    6.2. Arquivos especiais: Permitem que dispositivos de E/S sejam tratados como arquivos. Isto é, podem ser lidos
+         e escritos com as mesmas chamadas de arquivos comuns:
+        6.2.1 De bloco: Modelam dispositivos que consistem de uma coleção de blocos aleatoriamente endereçáveis,
+              podem assim acessar diretamente blocos existentes independentemente da estrutura do sistema. Ex: discos.
+        6.2.2 De caracteres: Modelam dispositivos que enviam fluxos de caracteres. Ex.: Impressora, modem, etc.
+    6.3. Pipe: É um pseudo arquivo que pode conectar dois processos. Precisa ser configurado previamente. (A) Escreve os
+         os dados no pipe como se fosse um arquivo de saída, e (B) lê os dados do pipe como se fosse um arquivo de entrada.
 
 7. Entrada e Saída (E/S): Todo S.O. tem um subsistema de E/S para gerenciar os dispositivos. Alguns dos softwares aplicados são
    independentes do dispositivo, i.e., genéricos. Outros são específicos a dispositivos de E/S particulares, os drivers.
@@ -56,63 +56,63 @@ S.O. - Principais definições e tópicos.
 
 9. Chamadas de sistema: são a interface entre os programas de usuário e o S.O., sendo fundamentalmente abstrações. As
    chamadas variam entre os S.O., mas basicamente têm-se as seguintes funções:
-	- Gerenciamento de processo;
-	- Gerenciamento de arquivos;
-	- Gerenciamento do sistema de diretórios;
-	- Outras.
+    - Gerenciamento de processo;
+    - Gerenciamento de arquivos;
+    - Gerenciamento do sistema de diretórios;
+    - Outras.
    *Para obter serviços do sistema operacional, um programa de usuário deve fazer uma chamada de sistema, que, por meio de uma
    instrução TRAP, chaveia do modo usuário para o modo núcleo e passa o controle para o sistema operacional.
    -> Exemplo de chamada de sistema :
-	n = read(fd, buffer, nbytes) # Read data from a file into a buffer.
-		- fd: Especifica o arquivo;
-		- Buffer: Ponteiro para o espaço de memória (onde se irá colocar os dados lidos);
-		- Nbytes: Quantidade de bytes a ser lida;
-		- n: nº de bytes realmente lidos (zero = erro).
-	Execução da chamada:
-		1. Empilha os parâmetros (fd, &buffer, nbytes) - Espaço de memória do usuário;
-		2. Chamada real para a rotina (read) - Transição do espaço do usuário ao do código da rotina (na biblioteca);
-		3. Coloca o código para a rotina (read) num registrador - Aqui já faz parte do espaço de memória da rotina;
-		4. Executa uma função trap (passa do modo usuário ao modo kernel) - Vai para o espaço do kernel (SO);
-		5. Despacha para o tratador correto da chamada de sistema;
-		6. É executado o tratamento da chamada de sistema (leitura de n bytes do arquivo);
-		7. Volta o controle para a rotina da biblioteca (read) em modo usuário;
-		8. Volta ao programa (espaço de memória do código do usuário) que fez a chamada;
-		9. Termina a tarefa limpando a pilha (com os parâmetros).
+    n = read(fd, buffer, nbytes) # Read data from a file into a buffer.
+        - fd: Especifica o arquivo;
+        - Buffer: Ponteiro para o espaço de memória (onde se irá colocar os dados lidos);
+        - Nbytes: Quantidade de bytes a ser lida;
+        - n: nº de bytes realmente lidos (zero = erro).
+    Execução da chamada:
+        1. Empilha os parâmetros (fd, &buffer, nbytes) - Espaço de memória do usuário;
+        2. Chamada real para a rotina (read) - Transição do espaço do usuário ao do código da rotina (na biblioteca);
+        3. Coloca o código para a rotina (read) num registrador - Aqui já faz parte do espaço de memória da rotina;
+        4. Executa uma função trap (passa do modo usuário ao modo kernel) - Vai para o espaço do kernel (SO);
+        5. Despacha para o tratador correto da chamada de sistema;
+        6. É executado o tratamento da chamada de sistema (leitura de n bytes do arquivo);
+        7. Volta o controle para a rotina da biblioteca (read) em modo usuário;
+        8. Volta ao programa (espaço de memória do código do usuário) que fez a chamada;
+        9. Termina a tarefa limpando a pilha (com os parâmetros).
 
 10. Estrutura de SOs:
 
-	10.1 Sistemas monolíticos:
-		10.1.1 Um programa principal que invoca a rotina do serviço requerido;
-		10.1.2 Um conjunto de rotinas de serviço que executam as chamadas de sistema;
-		10.1.3 Um conjunto de rotinas de utilidade que auxiliam as rotinas de serviço.
-		Vantagens: Eficiência.
-		Desvantagens: Complexidade e uma falha afeta todo o sistema.
-	10.2 Sistemas de camadas:
-		Forma uma hierarquia de camadas, cada uma construída (utiliza funções) sobre a camada abaixo.
-		Cada camada oferece um conjunto de funções que pode ser usado por camadas adjacentes.
-		Vantagens: Isolamento (facilita alteração e depuração) e Hierarquia (proteção de funções).
-		Desvantagens: Desempenho.
-	10.3 Microkernel:
-		Colocar o mínimo possível de funções em modo núcleo (SO dividido em vários processos). O
-		núcleo do SO incorpora principalmente as tarefas de:
-			- Escalonamento;
-			- Gerência de memória;
-			- Drivers.
-		Vantagens: Alta confiabilidade, apenas um módulo executa em modo núcleo. Um erro pontual
-		pode quebrar aquele componente, mas não o sistema todo. (Até os drivers são processos
-		em modo usuário).
-	10.4 Modelo cliente-servidor:
-		Variação de microkernel. Duas classes de processo:
-			- Cliente: requisita um serviço/procedimento;
-			- Servidor: realiza o serviço/procedimento (pode ser processo usuário ou núcleo do sistema).
-	10.5 Máquina Virtual:
-		São cópias lógicas do HW sobre o HW real.
-		- Hipervisor (ou Monitor de Máquina virtual): opera direto sobre o HW oferecendo multiprogramação.
-		Pode também ser executado como aplicativo na camada superior do SO.
-	10.6 Exonúcleo: 
-		Dividir a máquina real em um subconjunto de recursos. O exonúcleo fica na camada inferior e
-		aloca recursos e gerencia o uso (garante o isolamento). 
-		Vantagem: Menor custo para multiprogramação.
+    10.1 Sistemas monolíticos:
+        10.1.1 Um programa principal que invoca a rotina do serviço requerido;
+        10.1.2 Um conjunto de rotinas de serviço que executam as chamadas de sistema;
+        10.1.3 Um conjunto de rotinas de utilidade que auxiliam as rotinas de serviço.
+        Vantagens: Eficiência.
+        Desvantagens: Complexidade e uma falha afeta todo o sistema.
+    10.2 Sistemas de camadas:
+        Forma uma hierarquia de camadas, cada uma construída (utiliza funções) sobre a camada abaixo.
+        Cada camada oferece um conjunto de funções que pode ser usado por camadas adjacentes.
+        Vantagens: Isolamento (facilita alteração e depuração) e Hierarquia (proteção de funções).
+        Desvantagens: Desempenho.
+    10.3 Microkernel:
+        Colocar o mínimo possível de funções em modo núcleo (SO dividido em vários processos). O
+        núcleo do SO incorpora principalmente as tarefas de:
+            - Escalonamento;
+            - Gerência de memória;
+            - Drivers.
+        Vantagens: Alta confiabilidade, apenas um módulo executa em modo núcleo. Um erro pontual
+        pode quebrar aquele componente, mas não o sistema todo. (Até os drivers são processos
+        em modo usuário).
+    10.4 Modelo cliente-servidor:
+        Variação de microkernel. Duas classes de processo:
+            - Cliente: requisita um serviço/procedimento;
+            - Servidor: realiza o serviço/procedimento (pode ser processo usuário ou núcleo do sistema).
+    10.5 Máquina Virtual:
+        São cópias lógicas do HW sobre o HW real.
+        - Hipervisor (ou Monitor de Máquina virtual): opera direto sobre o HW oferecendo multiprogramação.
+        Pode também ser executado como aplicativo na camada superior do SO.
+    10.6 Exonúcleo: 
+        Dividir a máquina real em um subconjunto de recursos. O exonúcleo fica na camada inferior e
+        aloca recursos e gerencia o uso (garante o isolamento). 
+        Vantagem: Menor custo para multiprogramação.
 
 
 
