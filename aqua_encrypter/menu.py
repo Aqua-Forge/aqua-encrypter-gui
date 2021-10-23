@@ -114,4 +114,7 @@ def menu_1(window):
 def runApplication():
     window = Window(programTitle, minWindowHeight, minWindowWidth, resizable, centered)
     menu_1(window)
+    window.lift()
+    window.attributes("-topmost", True)
+    window.after_idle(window.attributes, "-topmost", False)
     window.run()

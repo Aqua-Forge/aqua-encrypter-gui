@@ -8,7 +8,9 @@ from aqua_encrypter import encrypt
 def cryptography(mode):
     name = "Encrypt" if mode=="encrypt" else "Decrypt"
     encBox = Window(name, 400, 300, False, True)
+    encBox.lift()
     encBox.attributes("-topmost", True)
+    encBox.after_idle(encBox.attributes, "-topmost", False)
     defaultBg = encBox.cget('bg')
 
     menu = tk.Frame(encBox, width=400, height=300)
@@ -33,7 +35,9 @@ def cryptography(mode):
         encBox.attributes("-topmost", False)
         if(mode=="file"): setEntry(entry, b.browse_box())
         else: setEntry(entry, b.browse_folder())
+        encBox.lift()
         encBox.attributes("-topmost", True)
+        encBox.after_idle(encBox.attributes, "-topmost", False)
 
     pathEntry = tk.Entry(pathFrame, width=35)
     pathEntry.pack(padx=10, ipady=4, anchor="nw", side=tk.LEFT)
@@ -102,7 +106,9 @@ def cryptography(mode):
         else: encrypt.decryptFile(filePath, savePath+"/decrypted.txt", key)
 
         sucess = Window("Sucess!", 250, 100, False, True)
+        sucess.lift()
         sucess.attributes("-topmost", True)
+        sucess.after_idle(encBox.attributes, "-topmost", False)
         modeMsg = "encrypted!" if mode=="encrypt" else "decrypted!"
         msg = tk.Label(sucess, text="Successfully " + modeMsg)
         msg.pack(pady=15)
