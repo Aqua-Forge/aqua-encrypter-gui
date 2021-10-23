@@ -1,4 +1,4 @@
-from menu import *
+from .menu import *
 
 def main():
     runApplication()

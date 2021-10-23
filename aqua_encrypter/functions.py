@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
-from tkWindow import *
-import browsing as b
+from .tkWindow import *
+from aqua_encrypter import browsing as b
 import os
-import encrypt
+from aqua_encrypter import encrypt
 
 def cryptography(mode):
     name = "Encrypt" if mode=="encrypt" else "Decrypt"

@@ -3,8 +3,8 @@ import tkinter as tk # import tkinter in Python 3. If using Python 2 change to: 
 from tkinter import ttk # Themed tkinter (Improves GUI look and feel)
 import os, sys
 # Personal modules:
-from tkWindow import *
-import functions as f
+from .tkWindow import *
+from aqua_encrypter import functions as f
 
 # Window features:
 minWindowHeight, minWindowWidth = 500, 500
@@ -19,7 +19,7 @@ bgColor = "white"
 buttonWidth = 16
 buttonColor = "palegreen"
 buttonTextColor = "black"
-footer = "Gabriel Furtado Lins Melo"
+footer = "AQUA FORGE LTDA."
 
 def menu_1(window):
     # Main menu frame:
@@ -29,7 +29,7 @@ def menu_1(window):
 
     # Texts, Frames and Images:
     title = tk.Label(menu, text=programTitle, fg=titleColor, font=("serif", 16, "bold", "italic"), background=bgColor)
-    msg = tk.Label(menu, text=footer, fg="purple", background="white")
+    msg = tk.Label(menu, text=footer, fg="blue", background="white")
     buttons = tk.Frame(menu, width=200, height=280, background=bgColor)
     buttons.grid_propagate(0) # Fix frame size
     rightBox = tk.Frame(menu, width=200, height=300, background="white")
